@@ -24,15 +24,46 @@ class Monster extends Phaser.Scene {
 
     create() {
         let my = this.my;   // create an alias to this.my for readability
-
+        let sprt = my.sprite; // creats an alias formy.sprite for simplicity
         // Create the main body sprite
         //
         // this.add.sprite(x,y, "{atlas key name}", "{name of sprite within atlas}")
         //
         // look in spritesheet_default.xml for the individual sprite names
         // You can also download the asset pack and look in the PNG/default folder.
-        my.sprite.body = this.add.sprite(this.bodyX, this.bodyY, "monsterParts", "body_greenD.png");
+        //
 
+        // make a container for the monster
+        sprt.Monstercontainer = this.add.container(this.bodyX, this.bodyY);
+
+        //body
+        sprt.body = this.add.sprite(0, 0, "monsterParts", "body_redA.png");
+
+        //arms
+        sprt.arm = this.add.sprite(120, 50, "monsterParts", "arm_darkA.png");
+        sprt.arm1 = this.add.sprite(-120, 50, "monsterParts", "arm_darkA.png");
+        sprt.arm1.flipX = true;// flips the arm across the X axis.
+
+        //legs
+        sprt.leg = this.add.sprite(50, 140, "monsterParts", "leg_darkC.png");
+        sprt.leg1 = this.add.sprite(-50, 140, "monsterParts", "leg_darkC.png");
+        sprt.leg1.flipX = true;
+
+        //horns
+        sprt.hrn = this.add.sprite(75, -75, "monsterParts", "detail_white_horn_large.png");
+        sprt.hrn1 = this.add.sprite(-75, -75, "monsterParts", "detail_white_horn_large.png");
+        sprt.hrn1.flipX = true;  
+
+        //eyes
+        sprt.eye = this.add.sprite(0, 0, "monsterParts", "eye_yellow.png");
+        
+        //mouth
+        sprt.mouth = this.add.sprite(0, +50, "monsterParts", "mouthC.png");
+
+        sprt.Monstercontainer.add([sprt.body,sprt.arm,sprt.arm1,
+            sprt.leg,sprt.leg1,sprt.hrn,sprt.hrn1,
+            sprt.eye,sprt.mouth
+        ])
         
     }
 
