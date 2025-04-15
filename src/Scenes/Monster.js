@@ -58,19 +58,42 @@ class Monster extends Phaser.Scene {
         sprt.eye = this.add.sprite(0, 0, "monsterParts", "eye_yellow.png");
         
         //mouth
-        sprt.mouth = this.add.sprite(0, +50, "monsterParts", "mouthC.png");
+        sprt.mouth = this.add.sprite(0, 50, "monsterParts", "mouthC.png");
 
         sprt.Monstercontainer.add([sprt.body,sprt.arm,sprt.arm1,
-            sprt.leg,sprt.leg1,sprt.hrn,sprt.hrn1,
+            sprt.leg,sprt.leg1,
+            sprt.hrn,sprt.hrn1,
             sprt.eye,sprt.mouth
         ])
         
+
+        this.input.keyboard.enabled = true;
+        this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.f = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+
     }
 
     update() {
         let my = this.my;    // create an alias to this.my for readability
+        //let smileActive = false;
+        if(this.a.isDown){
+            my.sprite.Monstercontainer.x -= 5;
+        }
+        if(this.d.isDown){
+            my.sprite.Monstercontainer.x += 5;
+        }
+        if(this.s.isDown){
+            my.sprite.mouth = this.add.sprite(0,50, "monsterParts", "mouthA.png");
+            my.sprite.Monstercontainer.add(my.sprite.mouth);
 
-       
+        }
+        if(this.f.isDown){
+            my.sprite.mouth = this.add.sprite(0,50, "monsterParts", "mouthB.png");
+            my.sprite.Monstercontainer.add(my.sprite.mouth);
+
+        }
     }
 
 }
